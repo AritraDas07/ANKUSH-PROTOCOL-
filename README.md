@@ -1,3 +1,10 @@
+<div align="center">
+<img width="497" height="502" alt="Gemini_Generated_Image_1cc3tk1cc3tk1cc3-removebg-preview (1)" src="https://github.com/user-attachments/assets/6ce00f1e-0c5e-46db-8659-370e4bc356d5" />
+
+</div>
+
+
+
 # 🛡️ ANKUSH: The Payment Protocol for the AI Economy
 
 <div align="center">
