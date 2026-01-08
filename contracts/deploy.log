@@ -1,0 +1,3 @@
+[dotenv@17.2.3] injecting env (2) from .env -- tip: 🔑 add access controls to secrets: https://dotenvx.com/ops
+[dotenv@17.2.3] injecting env (0) from .env -- tip: ⚙️  write to custom object with { processEnv: myObject }
+🛡️ Ankush Shield Deployed to: 0xf17100750917377eabEA95b4e33Bc25778713448
