@@ -1,10 +1,3 @@
-<div align="center">
-<img width="497" height="502" alt="Gemini_Generated_Image_1cc3tk1cc3tk1cc3-removebg-preview (1)" src="https://github.com/user-attachments/assets/6ce00f1e-0c5e-46db-8659-370e4bc356d5" />
-
-</div>
-
-
-
 # 🛡️ ANKUSH: The Payment Protocol for the AI Economy
 
 <div align="center">
@@ -26,7 +19,7 @@
 1. [Executive Summary](#-executive-summary)
 2. [The Problem](#-the-problem)
 3. [The Solution: Ankush Protocol](#-the-solution-ankush-protocol)
-4. [Key Features](#-key-features)
+4. [Key Features](#-key-features)                                                             
 5. [Technical Architecture](#-technical-architecture)
 6. [Live Deployment Details](#-live-deployment-details)
 7. [Getting Started (Demo Guide)](#-getting-started-demo-guide)
