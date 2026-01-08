@@ -172,7 +172,7 @@ npm run dev
 ---
 
 <div align="center">
-<sub>Built with ❤️ at the International Web3 Hackathon 2026</sub>
+<sub>Built with ❤️ at the ON-BLOCK 2026 Hackathon </sub>
 </div>
 
 ```
