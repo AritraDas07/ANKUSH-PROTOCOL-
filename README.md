@@ -1,73 +1,179 @@
 # 🛡️ ANKUSH: The Payment Protocol for the AI Economy
 
-> **Winner Track:** The Payment Protocol for the AI Economy
-> **Network:** Base Sepolia
+<div align="center">
 
-**Ankush** is a decentralized security layer that enables AI Agents to transact autonomously on the blockchain *without* exposing the user's main private key.
+[![Deploy with Vercel](https://vercel.com/button)](https://ankush-protocol.vercel.app/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Network: Base Sepolia](https://img.shields.io/badge/Network-Base%20Sepolia-blue)](https://sepolia.basescan.org/)
+[![Status: Live](https://img.shields.io/badge/Status-Live%20Beta-success)](https://ankush-protocol.vercel.app/)
 
-## 🧠 The Problem
-As AI agents become autonomous, they need to pay for resources (APIs, storage, compute). Currently, giving an AI a wallet means giving it a Private Key. If the AI is hacked or hallucinates, the entire wallet is drained.
+**Trustless Financial Rails for the Agentic Future.**
 
-## 💡 The Solution: Session Keys
-Ankush implements **Modular Smart Account Validators**.
-1.  **Delegate:** Users authorize a temporary "Session Key" for their AI Agent.
-2.  **Restrict:** Users set strict spending limits (e.g., "Max 100 USDC") and expiration times.
-3.  **Transact:** The AI Agent signs transactions with its Session Key. The **AnkushValidator** contract verifies the permission on-chain before executing the payment.
+[Launch Dashboard](https://ankush-protocol.vercel.app/) • [View Contract](https://sepolia.basescan.org/address/0xf17100750917377eabEA95b4e33Bc25778713448) • [Watch Demo](https://youtu.be/YOUR_VIDEO_LINK)
 
-**Result:** You can trust an AI with your money, because you can't lose more than the allowance.
+</div>
 
-## ⚡ Tech Stack
-* **Blockchain:** Base Sepolia (Testnet)
-* **Contracts:** Solidity, Hardhat, OpenZeppelin ECDSA
-* **Frontend:** Next.js 15, Tailwind CSS, Framer Motion, React Three Fiber (The "Royal X" Dashboard)
-* **Backend:** Node.js, Express, Ethers.js (Simulating the AI Nervous System)
-* **Integration:** Wagmi, Viem, RainbowKit
+---
 
-## 🚀 How to Run Locally
+## 📖 Table of Contents
+1. [Executive Summary](#-executive-summary)
+2. [The Problem](#-the-problem)
+3. [The Solution: Ankush Protocol](#-the-solution-ankush-protocol)
+4. [Key Features](#-key-features)
+5. [Technical Architecture](#-technical-architecture)
+6. [Live Deployment Details](#-live-deployment-details)
+7. [Getting Started (Demo Guide)](#-getting-started-demo-guide)
+8. [Local Development](#-local-development)
+9. [Roadmap](#-roadmap)
+10. [Team](#-team)
 
-### 1. Prerequisites
-* Node.js v18+
-* Metamask Wallet
+---
 
-### 2. Installation
+## 📋 Executive Summary
+**Ankush** is a decentralized security protocol designed to facilitate the "Agentic Economy." It enables AI Agents to hold and spend cryptocurrency autonomously without requiring direct access to a user's master Private Key. By implementing **Programmable Session Keys** and **Modular Validators**, Ankush acts as a financial firewall, ensuring that AI agents operate within strict, pre-defined financial boundaries.
+
+---
+
+## 🛑 The Problem
+
+As Large Language Models (LLMs) evolve into autonomous agents, they need to pay for resources (API credits, storage, computational power) to function independently.
+
+However, the current Web3 infrastructure presents a critical security dilemma:
+* **The "Custodial" Risk:** Giving an AI agent a wallet means giving it a Private Key. If the model hallucinates, gets prompt-injected, or the server is compromised, the entire wallet can be drained.
+* **The "Approval" Bottleneck:** If a human must sign every transaction, the AI is no longer autonomous.
+* **Lack of Granularity:** Standard ERC-20 allowances are "all or nothing" for a specific spender, lacking time-based or logic-based restrictions.
+
+---
+
+## 💡 The Solution: Ankush Protocol
+
+Ankush introduces **Ephemeral Session Keys** enforced by smart contracts.
+
+Instead of sharing a master key, a user generates a temporary, limited-permission key for their AI agent. The **AnkushValidator** smart contract intercepts every transaction attempted by the AI and verifies:
+1.  **Identity:** Is this key currently authorized by the user?
+2.  **Scope:** Is the transaction value within the `spendingLimit`?
+3.  **Time:** Is the session still valid (`validUntil`)?
+
+If any check fails, the transaction reverts on-chain, making it mathematically impossible for the AI to overspend.
+
+---
+
+## ✨ Key Features
+
+### 🔐 1. Non-Custodial Security
+Users never share their main private key with the AI or the application backend. The AI operates using a disposable key that holds **zero funds** itself; it only has *permission* to spend from the user's vault.
+
+### 💸 2. Granular Spending Limits
+Set precise allowances (e.g., "10 USDC per day" or "Total 0.05 ETH"). This limits the "Blast Radius" of a hack to only the remaining allowance of that specific session.
+
+### ⚡ 3. One-Click Authorization
+Users sign a single transaction to onboard an agent. Once authorized, the agent can execute thousands of transactions autonomously until the session expires.
+
+### 🖥️ 4. "Royal X" Command Center
+A high-performance, 3D dashboard built with **React Three Fiber** that visualizes agent activity, active sessions, and real-time security logs.
+
+---
+
+## 🏗️ Technical Architecture
+
+The system follows a **Monolithic Vercel Architecture** for speed and reliability.
+
+```mermaid
+graph TD
+    User[User (MetaMask)] -->|1. Authorize Session| Contract[AnkushValidator Contract]
+    AI[AI Agent (Backend)] -->|2. Generate Tx Signature| AI_Key[Session Key (Ephemeral)]
+    AI_Key -->|3. Submit UserOp| Contract
+    Contract -->|4. Verify Permissions| Ledger[Blockchain Ledger]
+    Ledger -->|5. Execute Payment| Recipient
+
+```
+
+* **Smart Contracts:** Solidity v0.8.19 using OpenZeppelin `ECDSA` for cryptographic signature recovery.
+* **Frontend:** Next.js 15 (App Router) with Tailwind CSS and Framer Motion.
+* **3D Visuals:** Three.js / React Three Fiber.
+* **Integration:** Wagmi (React Hooks for Ethereum) and Viem (TypeScript Interface).
+* **Backend API:** Next.js API Routes acting as the "Nervous System" for the AI Agent.
+
+---
+
+## 🌐 Live Deployment Details
+
+| Component | Status | Address / Link |
+| --- | --- | --- |
+| **Network** | Base Sepolia | `Chain ID: 84532` |
+| **Smart Contract** | Verified | [`0xf17100750917377eabEA95b4e33Bc25778713448`](https://www.google.com/url?sa=E&source=gmail&q=https://sepolia.basescan.org/address/0xf17100750917377eabEA95b4e33Bc25778713448) |
+| **Frontend** | Active | [https://ankush-protocol.vercel.app/](https://ankush-protocol.vercel.app/) |
+| **Demo Agent** | Online | `0x2Db58ea81A79A4E5B2f06233723c94A0303983E9` |
+
+---
+
+## 🚀 Getting Started (Demo Guide)
+
+**Judges:** Follow this flow to test the "Autonomous Payment" capabilities.
+
+### Phase 1: The Manager (Frontend)
+
+1. Open the [Dashboard](https://ankush-protocol.vercel.app/).
+2. Connect your Wallet (Base Sepolia).
+3. Scroll to the **"Create New Agent"** card.
+4. Enter the Demo Agent Address: `0x2Db58ea81A79A4E5B2f06233723c94A0303983E9`
+5. Set a spending limit (e.g., `1000`).
+6. Click **Create Session** and confirm the transaction.
+
+### Phase 2: The Agent (Backend)
+
+1. Scroll down to the **"TRIGGER AUTONOMOUS PAYMENT"** button.
+2. Click the button. This signals the backend AI to construct and sign a transaction.
+3. **Observe:** The *Protocol Neural Log* will turn **Green**, indicating the Smart Contract successfully validated the AI's signature against your policy.
+
+---
+
+## 💻 Local Development
+
+If you wish to run the protocol locally:
+
 ```bash
-# Clone the repo
-git clone [https://github.com/YOUR_USERNAME/ankush.git](https://github.com/YOUR_USERNAME/ankush.git)
-cd ankush
+# 1. Clone the repository
+git clone [https://github.com/AritraDas07/ANKUSH-PROTOCOL-.git](https://github.com/AritraDas07/ANKUSH-PROTOCOL-.git)
 
-# Install Monorepo dependencies
-cd web && npm install
-cd ../contracts && npm install
-cd ../functions && npm install
-3. Deploy Contracts (Base Sepolia)
-Bash
-
-cd contracts
-npx hardhat run scripts/deploy.ts --network sepolia
-# Copy the deployed Validator Address
-4. Start the "AI Brain" (Backend)
-Bash
-
-cd functions
-# Configure .env with your Agent Private Key and Validator Address
-node server.js
-5. Launch the Command Center (Frontend)
-Bash
-
+# 2. Install dependencies
 cd web
+npm install
+
+# 3. Configure Environment
+# Create a .env file in /web and add:
+# NEXT_PUBLIC_RPC_URL="[https://sepolia.base.org](https://sepolia.base.org)"
+# AGENT_PRIVATE_KEY="[YOUR_TEST_KEY]"
+
+# 4. Run the Development Server
 npm run dev
-📸 Demo Workflow
-Connect Wallet to the Royal X Dashboard.
 
-Create Agent: Authorize a new Session Key with a spending limit.
+```
 
-Trigger AI: Click "Execute Autonomous Payment."
+---
 
-Verify: Watch the transaction validate on-chain via the Activity Feed.
+## 🗺️ Roadmap
 
-📜 Contract Details
-Validator Address: [PASTE YOUR CONTRACT ADDRESS HERE]
+* **Q1 2026:** Mainnet Deployment on Base.
+* **Q2 2026:** Integration with **Superfluid** for streaming payments (paying AI per second of compute).
+* **Q3 2026:** Multi-chain support (Optimism, Arbitrum) using Chainlink CCIP.
+* **Q4 2026:** SDK Release for AI Developers (Python/LangChain integration).
 
-Network: Base Sepolia
+---
 
-Built with ❤️ for the AI x Web3 Hackathon.
+## 👥 Team
+
+* **Aritra Das** - Team Lead & Full Stack Architect
+* **Ankan Saha** - Blockchain Developer
+* **Suhani Singh** - Frontend Engineer
+* **Anurag Das** - UI/UX Designer
+
+---
+
+<div align="center">
+<sub>Built with ❤️ at the International Web3 Hackathon 2026</sub>
+</div>
+
+```
+
+```
